@@ -1,0 +1,3 @@
+﻿   settings.optimizedShadows = true;
+   settings.sun.shadowCascadeCount = 3;
+   settings.useShadowPlanes = false;

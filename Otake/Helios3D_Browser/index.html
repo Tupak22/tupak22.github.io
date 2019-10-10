@@ -1,0 +1,1466 @@
+﻿<!DOCTYPE html>
+<!--html manifest="HeliosBrowserView.appcache" lang="en"-->
+<html lang="en">
+<head>
+   <title>Helios3D Website Exporter</title>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=Edge" /> <!-- For IE on an intranet. -->
+   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" type="text/css" href="style/hwe_min.css" />
+   <link rel="stylesheet" type="text/css" href="style/pikaday.css" />
+   <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+
+   <div id="idSplashScreen"></div>
+
+   <div id="idMDNavBar">
+
+      <div class="clsCol-1">
+         <a href="http://www.stoehr-sauer.de" target="_blank">
+            <div id="idHeliosLogo"></div>
+         </a>
+      </div>
+
+      <div class="clsCol-2">
+         <div style="float:left; margin-left:40%">
+            <div id="idLookDownIcon" class="clsMDBarButton clsMDActionButton clsLookDownInactive"></div>
+            <div id="idSnapshotIcon" data-menu-frame="idScreenshotSettingsBody" class="clsMDBarButton clsMDActionButton"></div>
+            <div id="idFullscreenIcon" class="clsMDBarButton clsMDActionButton clsFullscreenIconIsWindow"></div>
+            <div id="idTrackshotIcon" class="clsMDBarButton clsMDActionButton clsTrackshotIconRunning"></div>
+         </div>
+      </div>
+
+      <div class="clsCol-3">
+         <div id="idSettingsIcon" data-menu-frame="idMenuBody" class="clsMDBarButton clsMDMenuButton"></div>
+         <div id="idLanguageIcon" class="clsMDBarButton clsMDMenuButtonWithNoFrameToOpen clsLanguageIconDE" data-language="DE"></div>
+         <div id="idHelpIcon" data-menu-frame="idHelpBody" class="clsMDBarButton clsMDMenuButton"></div>
+         <div id="idInfoIcon" data-menu-frame="idInfoBody" class="clsMDBarButton clsMDMenuButton"></div>
+      </div>
+
+   </div>
+
+   <div class="clsBackDiv" id="idBackDiv">
+
+      <canvas id="idCvs" class="clsCvs"></canvas>
+
+      <div id="idHeading">
+         &nbsp;
+      </div>
+
+      <div id="idCustomerLogo">
+         &nbsp;
+      </div>
+
+      <!-- Side Menu-->
+      <div id="idMenuBody" class="clsMDMenuList">
+         <div class="clsCloseButton"></div>
+         <div>
+            <ul>
+               <li>
+                  <div id="idMenuGoToSun" data-menu-frame="idSunBody" class="clsSeperatingLine clsMDMenuButton clsNoOverflow">
+                     <div id="idMenuSunIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idMenuSunLabel">Sonnenstand</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+
+               <li>
+                  <div id="idMenuGoToEnvironment" data-menu-frame="idEnvironmentBody" class="clsSeperatingLine clsMDMenuButton clsNoOverflow">
+                     <div id="idMenuEnvironmentIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idMenuEnvironmentLabel">Landschaft</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+
+               <li>
+                  <div id="idMenuGoToAnalysis" data-menu-frame="idMenuAnalysisBody" class="clsSeperatingLine clsMDMenuButton clsNoOverflow">
+                     <div id="idMenuAnalysisIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idMenuAnalysisLabel">Datenanalyse</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+
+               <li>
+                  <div id="idMenuGoToPerformaneDelta" data-menu-frame="idPerformanceBody" class="clsSeperatingLine clsMDMenuButton clsNoOverflow">
+                     <div id="idMenuPerformaneIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idMenuPerformaneLabel">Performance&nbsp;difference</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+
+               <li>
+                  <div id="idMenuGoToScreen" data-menu-frame="idScreenSettingsBody" class="clsSeperatingLine clsMDMenuButton clsNoOverflow">
+                     <div id="idMenuScreenIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idMenuScreenLabel">Grafik</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+
+               <li style="display:none">
+                  <div id="idMenuGoToScreenshot" data-menu-frame="idScreenshotSettingsBody" class="clsSeperatingLine clsMDMenuButton clsNoOverflow">
+                     <div id="idMenuScreenshotIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idMenuScreenshotLabel">Screenshot</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+
+               <li style="display:none">
+                  <div id="idMenuGoToTrackshot" data-menu-frame="idTrackshotBody" class="clsSeperatingLine clsMDMenuButton clsNoOverflow">
+                     <div id="idMenuTrackshotIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idMenuTrackshotLabel">Flug &auml;ndern</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+
+               <li>
+                  <div id="idMenuGoToSettings" data-menu-frame="idSettingsBody" class="clsSeperatingLine clsMDMenuButton clsNoOverflow">
+                     <div id="idMenuSettingsIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idMenuSettingsLabel">Einstellungen</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+
+               <li style="display:none">
+                  <div id="idMenuGoToReset" data-menu-frame="idResetBody" class="clsSeperatingLine clsMDMenuButton clsNoOverflow">
+                     <div id="idMenuResetIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idMenuResetLabel">Zur&uuml;cksetzen</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+
+               <li>
+                  <div id="idMenuGoToImpressum" data-menu-frame="idImpressumBody" class="clsMDMenuButton clsNoOverflow">
+                     <div id="idMenuImpressumIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idMenuImpressumLabel">Impressum</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+            </ul>
+         </div>
+      </div>
+
+
+      <!-- Sidebar Menu Containers -->
+      <div id="idHelpBody" class="clsMDMenuList" data-header-id="idItemHelpMenuHeadIcon">
+         <div class="clsCloseButton"></div>
+         <div>
+            <ul>
+               <li>
+                  <span id="idControlDescription" class="clsControlDescriptionDE"></span>
+               </li>
+
+            </ul>
+         </div>
+      </div>
+
+      <div id="idSunBody" class="clsMDMenuList" data-header-id="idItemSunSettingsMenuHeadIcon">
+         <div class="clsCloseButton"></div>
+         <div>
+            <span id="idItemSunSettingsBodyCaption" class="clsSideMenuBodyCaption">
+               Sonnenstand
+            </span>
+
+            <ul>
+               <li>
+                  <span id="idSunPositionLat" style="display:inline-block;width:85px">Breitengrad</span>
+                  <span id="idOutLatitude" class="clsListRight">&nbsp;</span>
+               </li>
+               <li>
+                  <span id="idSunPositionLong" style="display:inline-block;width:85px">L&auml;ngengrad</span>
+                  <span id="idOutLongitude" class="clsListRight">&nbsp;</span>
+               </li>
+               <li>
+                  <span id="idTimezone" style="display:inline-block;width:85px">Zeitzone:&nbsp;</span>
+                  <span id="idOutTimezone" class="clsListRight">&nbsp;</span>
+               </li>
+               <li>
+                  <br />
+               </li>
+               <li>
+                  <span id="idSunPositionDate">Datum (01.01. - 31.12.)</span>
+               </li>
+               <li>
+                  <input id="idInDate" type="range" min="0" max="365" value="0" />
+                  <input type="text" id="datepicker" style="width:36px;float:right">
+               </li>
+               <li>
+                  <span id="idSunPositionTime">Uhrzeit (morgens-abends)</span>
+               </li>
+               <li>
+                  <input id="idInTime" type="range" min="6" max="18" step="0.5" />
+                  <span id="idOutTime" class="clsListRight" style="float:right">&nbsp;</span>
+               </li>
+            </ul>
+         </div>
+      </div>
+
+      <div id="idEnvironmentBody" class="clsMDMenuList" data-header-id="idItemEnvironmentMenuHeadIcon">
+         <div class="clsCloseButton"></div>
+         <div>
+            <span id="idItemEnvironmentBodyCaption" class="clsSideMenuBodyCaption">
+               Environment
+            </span>
+            <ul>
+
+               <li>
+                  <div id="idMenuEnvironmentTabBody" class="clsMenuTabBody">
+
+                     <div id="idMenuEnvironmentTabHeader" class="clsMenuTabHeader">
+                        <input id="idEnvironmentButtonTabTextures" type="button" class="clsAnalysisTabButton" data-panel-id="idMenuEnvironmentTabBodyTextures" />
+                        <input id="idEnvironmentButtonTabHills" type="button" class="clsAnalysisTabButton" data-panel-id="idMenuEnvironmentTabBodyHills" />
+                        <input id="idEnvironmentButtonTabMisc" type="button" class="clsAnalysisTabButton" data-panel-id="idMenuEnvironmentTabBodyMisc" />
+                     </div>
+
+                     <div id="idMenuEnvironmentTabBodyTextures">
+                        <ul>
+
+                           <li>
+                              <p id="idPEnvironmentGroundTexture">
+                                 Bodentexturen
+                              </p>
+                              <p id="idGroundCarousel" class="clsCarousel">
+                              </p>
+                           </li>
+
+                           <li>
+                              <p id="idPEnvironmentRockTexture">
+                                 Felstexturen
+                              </p>
+                              <p id="idRockCarousel" class="clsCarousel">
+                              </p>
+                           </li>
+
+                           <li>
+                              <p id="idPEnvironmentFloraTexture">
+                                 Vegetation
+                              </p>
+                              <p id="idFloraCarousel" class="clsCarousel">
+                              </p>
+                           </li>
+
+                        </ul>
+                     </div>
+
+                     <div id="idMenuEnvironmentTabBodyHills">
+                        <ul>
+
+                           <li>
+                              <br />
+                           </li>
+
+                           <li>
+                              <span id="idSpnMountCountHead"> Anzahl der Berge: </span>
+                              <p style="white-space: nowrap">
+                                 <input id="idInMountainCount" type="range" min="0" max="10" step=".1" />
+                                 <span id="idOutMountainCount" class="clsListRight">&nbsp;</span>
+                              </p>
+                           </li>
+
+                           <li>
+                              <span id="idSpnMountHeightHead"> H&ouml;he der Berge: </span>
+                              <p style="white-space: nowrap">
+                                 <input id="idInMountainHeight" type="range" min="0" max="10" step=".1" />
+                                 <span id="idOutMountainHeight" class="clsListRight">&nbsp;</span>
+                              </p>
+                           </li>
+
+                           <li>
+                              <span id="idSpnMountRockHead"> Felsgrenze: </span><br />
+                              <p style="white-space: nowrap">
+                                 <input id="idInMountainRock" type="range" min="0" max="10" step=".1" />
+                                 <span id="idOutMountainRock" class="clsListRight">&nbsp;</span>
+                              </p>
+                           </li>
+
+                        </ul>
+                     </div>
+
+                     <div id="idMenuEnvironmentTabBodyMisc">
+                        <ul>
+
+                           <li>
+                              <br />
+                           </li>
+
+                           <li>
+                              <input type="checkbox" id="idCheckShowBirds" />
+                              <label id="idLblShowBirds" for="idCheckShowBirds" class="clsCheckBoxTab">Zeige V&ouml;gel</label>
+                           </li>
+
+                           <li>
+                              <input type="checkbox" id="idCheckShowFog" />
+                              <label id="idLblCheckShowFog" for="idCheckShowFog" class="clsCheckBoxTab">Dunst</label>
+                           </li>
+
+                           <li>
+                              <input type="checkbox" id="idCheckShowCliffs" />
+                              <label id="idLblCheckShowCliffs" for="idCheckShowCliffs" class="clsCheckBoxTab">Felstexturen</label>
+                           </li>
+
+                           <li>
+                              <br />
+                           </li>
+
+                           <li>
+                              <input type="number" id="idNumOfTrees" class="clsListRight" value="500" />
+                              <label id="idLblNumOfTrees" for="idNumOfTrees" style="margin-left:16px">B&auml;ume</label>
+                           </li>
+
+                        </ul>
+                     </div>
+
+                  </div>
+               </li>
+
+
+               <li>
+                  <br />
+               </li>
+
+               <li>
+                  <div id="idBtnCancelEnvironment" class="clsRaisedButton clsCancelButton "><span class="clsRaisedButtonLabel clsCancelIcon"></span></div>
+                  <div id="idBtnApplyEnvironment" class="clsRaisedButton clsApplyButton"><span class="clsRaisedButtonLabel clsApplyIcon"></span></div>
+               </li>
+               <li>
+                  <br />
+               </li>
+            </ul>
+         </div>
+      </div>
+
+      <div id="idMenuAnalysisBody" class="clsMDMenuList" data-do-not-close="true">
+         <div class="clsCloseButton"></div>
+         <div>
+            <span id="idItemMenuAnalysisBodyCaption" class="clsSideMenuBodyCaption">
+               Analysefunktionen
+            </span>
+
+            <ul>
+               <li>
+                  <input type="checkbox" id="idCheckShowTables">
+                  <label id="idLblShowTables" for="idCheckShowTables" class="clsCheckBoxTab">Tische ausblenden</label>
+               </li>
+
+               <li>
+                  <input type="checkbox" id="idCheckShowCadObjects" />
+                  <label id="idLblShowCadObjects" for="idCheckShowCadObjects" class="clsCheckBoxTab">CAD-Objekte Anzeigen</label>
+               </li>
+
+               <li>
+                  <input type="checkbox" id="idCheckHeightPointer">
+                  <label id="idLblHeightPointer" for="idCheckHeightPointer" class="clsCheckBoxTab">H&ouml;henanzeige</label>
+                  <div id="idOutShowHeight" style="display: inline-block">
+                     (
+                     <span id="idOutHeightPointer" class="clsListRight">&nbsp;</span>
+                     )
+                  </div>
+               </li>
+
+               <li>
+                  <input type="checkbox" id="idCheckShowLevelCurves">
+                  <label id="idLblShowLevelCurves" for="idCheckShowLevelCurves" class="clsCheckBoxTab">H&ouml;henlinien anzeigen</label>
+               </li>
+
+               <li>
+                  <br />
+                  <input type="button" id="idBtnSendAnalysis" class="clsRaisedButton clsApplyButton" value="SendAnalysis">
+                  <br />
+               </li>
+
+            </ul>
+
+            <br />
+
+            <div id="idMenuAnalysisTabBody" class="clsMenuTabBody">
+
+               <div id="idMenuAnalysisTabHeader" class="clsMenuTabHeader">
+                  <input id="idAnalysisButtonTabSlope" type="button" class="clsAnalysisTabButton" data-panel-id="idMenuAnalysisTabBodySlope" />
+                  <input id="idAnalysisButtonTabHeight" type="button" class="clsAnalysisTabButton" data-panel-id="idMenuAnalysisTabBodyHeight" />
+                  <input id="idAnalysisButtonTabRain" type="button" class="clsAnalysisTabButton" data-panel-id="idMenuAnalysisTabBodyRain" />
+                  <input id="idAnalysisButtonTabDirection" type="button" class="clsAnalysisTabButton" data-panel-id="idMenuAnalysisTabBodyDirection" />
+                  <input id="idAnalysisButtonTabMisc" type="button" class="clsAnalysisTabButton" data-panel-id="idMenuAnalysisTabBodyMisc" />
+               </div>
+
+               <div id="idMenuAnalysisTabBodySlope">
+                  <ul>
+                     <li id="idMarkSlopeAnalysis" class="clsGroupMark">
+                        <ul>
+
+                           <li>
+                              <input type="checkbox" id="idCheckSlopeAnalysis">
+                              <label id="idLblSlopeAnalysis" for="idCheckSlopeAnalysis" class="clsCheckBoxTab">Gef&auml;lle</label>
+                           </li>
+
+                           <li>
+                              <br />
+                           </li>
+                           <li>
+                              <span id="idSpnSlopeLimitHead">Max. Gef&auml;lle</span><br />
+                              <input id="idInSlopeLimit" type="range" min="0" max="90" step="1" />
+                              <span id="idOutSlopeLimit" class="clsListRight">&nbsp;</span>
+                           </li>
+
+                           <li>
+                              <label id="idLblSlopeColor0" for="idInputSlopeColor0" class="clsLabelTab">Gefälle 0</label>
+                              <input type="color" class="clsColorSelectButton" id="idInputSlopeColor0" value="#ff0000" />
+                           </li>
+
+                           <li>
+                              <label id="idLblSlopeColor1" for="idInputSlopeColor1" class="clsLabelTab">Gefälle 1</label>
+                              <input type="color" class="clsColorSelectButton" id="idInputSlopeColor1" value="#ff0000" />
+                           </li>
+
+                           <li>
+                              <label id="idLblSlopeColor2" for="idInputSlopeColor2" class="clsLabelTab">Gefälle 2</label>
+                              <input type="color" class="clsColorSelectButton" id="idInputSlopeColor2" value="#ff0000" />
+                           </li>
+
+                           <li>
+                              <label id="idLblSlopeColor3" for="idInputSlopeColor3" class="clsLabelTab">Gefälle 3</label>
+                              <input type="color" class="clsColorSelectButton" id="idInputSlopeColor3" value="#ff0000" />
+                           </li>
+
+                           <li>
+                              <label id="idLblSlopeColor4" for="idInputSlopeColor4" class="clsLabelTab">Gefälle 4</label>
+                              <input type="color" class="clsColorSelectButton" id="idInputSlopeColor4" value="#ff0000" />
+                           </li>
+                        </ul>
+                     </li>
+
+                     <li>
+                        <br />
+                     </li>
+
+                     <li id="idMarkSlopeAlignmentAnalysis" class="clsGroupMark">
+                        <ul>
+                           <li>
+                              <input type="checkbox" id="idCheckSlopeAlignmentAnalysis">
+                              <label id="idLblSlopeAlignmentAnalysis" for="idCheckSlopeAlignmentAnalysis" class="clsCheckBoxTab">Richtungsabh&auml;ngiges Gef&auml;lle</label>
+                              <div id="idButtonSlopeAlignmentResetAnalysis" class="clsMDMenuButton clsAnalysisResetButton">
+                                 &nbsp;
+                              </div>
+                           </li>
+                        </ul>
+                     </li>
+
+                     <li>
+                        <br />
+                     </li>
+
+                     <li id="idMarkSlopeLightConfig" class="clsGroupMark">
+                        <ul>
+                           <li class="clsNoOverflow">
+                              <span id="idSpnSlopeAnalysisAmbientIntensity">Intensit&auml;t Ambient Light</span><br />
+                              <input id="idInSlopeAnalysisAmbientIntensity" type="range" min="0" max="100" step="5" />
+                              <span id="idOutSlopeAnalysisAmbientIntensity" class="clsListRight">&nbsp;</span>
+                           </li>
+
+                           <li class="clsNoOverflow">
+                              <span id="idSpnSlopeAnalysisDirLightIntensity">Intensit&auml;t Dir Light</span><br />
+                              <input id="idInSlopeAnalysisDirLightIntensity" type="range" min="0" max="100" step="5" />
+                              <span id="idOutSlopeAnalysisDirLightIntensity" class="clsListRight">&nbsp;</span>
+                           </li>
+
+                           <li class="clsNoOverflow">
+                              <span id="idSpnSlopeAnalysisDirHeight">H&ouml;he Dir Light</span><br />
+                              <input id="idInSlopeAnalysisDirHeight" type="range" min="0" max="100" step="5" />
+                              <span id="idOutSlopeAnalysisDirHeight" class="clsListRight">&nbsp;</span>
+                           </li>
+                        </ul>
+                     </li>
+
+                  </ul>
+               </div>
+
+               <div id="idMenuAnalysisTabBodyHeight">
+                  <ul>
+                     <li id="idMarkHeightAnalysisActive" class="clsGroupMark">
+                        <ul>
+                           <li class="clsNoOverflow">
+                              <input type="checkbox" id="idCheckHeightAnalysis">
+                              <label id="idLblHeightAnalysis" for="idCheckHeightAnalysis" class="clsCheckBoxTab">H&ouml;henanalyse</label>
+                           </li>
+                           <li>
+                              <br />
+                           </li>
+                           <li>
+                              <span id="idSpnHeightAnalysisPresetHead" for="idSelectHeightAnalysisPreset">Preset</span>
+                              <select id="idSelectHeightAnalysisPreset" value="Afrika">
+                                 <option id="idOptionHeightAnalysisPresetAfrica" value="1" selected="selected">Afrika</option>
+                                 <option id="idOptionHeightAnalysisPresetEurope" value="2">Europa</option>
+                                 <option id="idOptionHeightAnalysisPresetDesert" value="3">W&uuml;ste</option>
+                                 <option id="idOptionHeightAnalysisPresetCustom" value="0">Angepasst</option>
+                              </select>
+                           </li>
+                           <li class="clsNoOverflow" style="display: flex;">
+                              <input type="color" id="idInputHeightL4" value="#ff0000" class="clsColorSelectButton clsAnalysisHeightLeft" />
+                              <input id="idInputHeightL4Limit" type="range" class="clsAnalysisHeightCenter" style="width: 60%; min-width:100px" />
+                              <span id="idOutputHeightL4Limit" class="clsAnalysisHeightRight"></span>
+                           </li>
+                           <li class="clsNoOverflow" style="display: flex;">
+                              <input type="color" id="idInputHeightL3" value="#fff000" class="clsColorSelectButton clsAnalysisHeightLeft" />
+                              <input id="idInputHeightL3Limit" type="range" class="clsAnalysisHeightCenter" style="width: 60%; min-width:100px" />
+                              <span id="idOutputHeightL3Limit" class="clsAnalysisHeightRight"></span>
+                           </li>
+                           <li class="clsNoOverflow" style="display: flex;">
+                              <input type="color" id="idInputHeightL2" value="#00ff00" class="clsColorSelectButton clsAnalysisHeightLeft" />
+                              <input id="idInputHeightL2Limit" type="range" class="clsAnalysisHeightCenter" style="width: 60%; min-width:100px" />
+                              <span id="idOutputHeightL2Limit" class="clsAnalysisHeightRight"></span>
+                           </li>
+                           <li class="clsNoOverflow" style="display: flex;">
+                              <input type="color" id="idInputHeightL1" value="#00fff0" class="clsColorSelectButton clsAnalysisHeightLeft" />
+                              <input id="idInputHeightL1Limit" type="range" class="clsAnalysisHeightCenter" style="width: 60%; min-width:100px" />
+                              <span id="idOutputHeightL1Limit" class="clsAnalysisHeightRight"></span>
+                           </li>
+                           <li class="clsNoOverflow" style="display: flex;">
+                              <input type="color" id="idInputHeightL0" value="#0000ff" class="clsColorSelectButton clsAnalysisHeightLeft" />
+                              <input id="idInputHeightL0Limit" type="range" class="clsAnalysisHeightCenter" style="width: 60%; min-width:100px" />
+                              <span id="idOutputHeightL0Limit" class="clsAnalysisHeightRight"></span>
+                           </li>
+                        </ul>
+                     </li>
+
+                     <li>
+                        <br />
+                     </li>
+
+                     <li id="idMarkHeightAnalysisConfig" class="clsGroupMark">
+                        <ul>
+                           <li class="clsNoOverflow">
+                              <span id="idSpnHeightAnalysisHeightFactor">H&ouml;hend&auml;mpfung</span><br />
+                              <input id="idInHeightAnalysisHeightFactor" type="range" min="1" max="5" step=".5" value="1" />
+                              <span id="idOutHeightAnalysisHeightFactor" class="clsListRight">1</span>
+                           </li>
+                           <li class="clsNoOverflow">
+                              <span id="idSpnHeightAnalysisAmbientIntensity">Intensit&auml;t Ambient Light</span><br />
+                              <input id="idInHeightAnalysisAmbientIntensity" type="range" min="0" max="100" step="5" />
+                              <span id="idOutHeightAnalysisAmbientIntensity" class="clsListRight">&nbsp;</span>
+                           </li>
+                           <li class="clsNoOverflow">
+                              <span id="idSpnHeightAnalysisDirLightIntensity">Intensit&auml;t Dir Light</span><br />
+                              <input id="idInHeightAnalysisDirLightIntensity" type="range" min="0" max="100" step="5" />
+                              <span id="idOutHeightAnalysisDirLightIntensity" class="clsListRight">&nbsp;</span>
+                           </li>
+                           <li class="clsNoOverflow">
+                              <span id="idSpnHeightAnalysisDirHeight">H&ouml;he Dir Light</span><br />
+                              <input id="idInHeightAnalysisDirHeight" type="range" min="0" max="100" step="5" />
+                              <span id="idOutHeightAnalysisDirHeight" class="clsListRight">&nbsp;</span>
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+
+               <div id="idMenuAnalysisTabBodyMisc">
+                  <ul>
+                     <li id="idMarkHeightExaggeration" class="clsGroupMark clsNoOverflow">
+                        <ul>
+                           <li id="idSpnHeightExaggeration">Gel&auml;nde&uuml;berzeichnung</li>
+                           <li>
+                              <input id="idInHeightExaggeration" type="range" min="0" max="10" step="1" />
+                              <span id="idOutHeightExaggeration" class="clsListRight">&nbsp;</span>
+                           </li>
+                        </ul>
+                     </li>
+                     <li class="clsNoOverflow">
+                        <br />
+                     </li>
+                     <li id="idMarkWaterPlane" class="clsGroupMark clsNoOverflow">
+                        <ul>
+                           <li id="idSpnWaterPlane">Wasserspiegel</li>
+                           <li>
+                              <input id="idInWaterPlane" type="range" min="0" max="100" step="0.5" />
+                              <span id="idOutWaterPlane" class="clsListRight">&nbsp;</span>
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+
+               <div id="idMenuAnalysisTabBodyRain">
+
+                  <ul id="idWaterAnalysis">
+
+                     <li class="clsGroupMark">
+
+                        <ul>
+                           <li>
+                              <input type="checkbox" id="idCheckWaterGridAnalysis">
+                              <label id="idLblWaterGridAnalysis" for="idCheckWaterGridAnalysis" class="clsCheckBoxTab">Rain Grid</label>
+                              <p style="margin-left: 12px">
+                                 <label id="idLblWaterGridDistanceHead" for="idInWaterGridDistance">Rasterabstand</label><br />
+                                 <input id="idInWaterGridDistance" type="range" min="10" max="30" step="2" />
+                                 <span id="idOutWaterGridDistance" class="clsListRight">&nbsp;</span>
+                              </p>
+                           </li>
+                        </ul>
+
+                     </li>
+
+                     <li class="clsNoOverflow" style="display: none">
+                        <input type="checkbox" id="idCheckWaterFlowAnalysis">
+                        <label id="idLblWaterFlowAnalysis" for="idCheckWaterFlowAnalysis" class="clsCheckBoxTab">Let it rain</label>
+                     </li>
+
+                     <li class="clsGroupMark">
+                        <ul>
+                           <li>
+                              <input type="checkbox" id="idCheckDropFlow">
+                              <label id="idLblCheckDropFlow" for="idCheckDropFlow" class="clsCheckBoxTab">Tropfenanalyse</label>
+
+                              <div id="idButtonDropFlowResetAnalysis" class="clsMDMenuButton clsAnalysisResetButton">
+                                 &nbsp;
+                              </div>
+
+                              <p style="margin-left: 12px">
+                                 <label id="idLblWaterDropGridCount" for="idInputWaterDropGridCount">Gitteranzahl</label>
+                                 <input type="range" id="idInputWaterDropGridCount" value="3" min="1" max="10" />
+                                 <span id="idOutputWaterDropGridCount"></span>
+                              </p>
+
+                              <p style="margin-left: 12px">
+                                 <label id="idLblWaterDropDistance" for="idInputWaterDropDistance">Wassertropfenentfernung</label><br />
+                                 <input type="range" id="idInputWaterDropDistance" value="10" min="1" max="10" />
+                                 <span id="idOutputWaterDropDistance"></span>
+                              </p>
+                           </li>
+                        </ul>
+                     </li>
+
+                     <li class="clsGroupMark">
+                        <ul>
+                           <li>
+                              <input type="checkbox" id="idCheckDropFlowAll">
+                              <label id="idLblCheckDropFlowAll" for="idCheckDropFlowAll" class="clsCheckBoxTab">Alles voller Tropfen</label>
+
+                              <div id="idButtonDropFlowResetAnalysisAll" class="clsMDMenuButton clsAnalysisResetButton">
+                                 &nbsp;
+                              </div>
+
+                              <p style="margin-left: 12px">
+                                 <label id="idLblWaterDropGridAll" for="idInputWaterDropGridAll">Fl&auml;chen pro Tropfen</label>
+                                 <input type="range" id="idInputWaterDropGridAll" value="10" min="1" max="20" />
+                                 <span id="idOutputWaterDropGridAll">10</span>
+                              </p>
+                           </li>
+                        </ul>
+                     </li>
+
+                     <li class="clsGroupMark" style="display:none">
+                        <ul>
+                           <li>
+                              <input type="checkbox" id="idCheckWaterAreaOfInfluence">
+                              <label id="idLblWaterAreaOfInfluence" for="idCheckWaterAreaOfInfluence" class="clsCheckBoxTab">Einzugsbereich</label>
+                              <div id="idButtonWaterAreaOfInfluenceResetAnalysis" class="clsMDMenuButton clsAnalysisResetButton">
+                                 &nbsp;
+                              </div>
+                           </li>
+                        </ul>
+                     </li>
+
+                  </ul>
+
+               </div>
+
+               <div id="idMenuAnalysisTabBodyDirection">
+                  <ul>
+                     <li id="idMarkDirectionAnalysisActive" class="clsGroupMark">
+                        <ul>
+                           <li class="clsNoOverflow">
+                              <input type="checkbox" id="idCheckCustomDirectionAnalysis">
+                              <label id="idLblCustomDirectionAnalysis" for="idCheckCustomDirectionAnalysis" class="clsCheckBoxTab">Richtungsanalyse</label>
+                           </li>
+
+                           <li style="display: inline-block;">
+                              <div id="idBtnDirectionAnalysisPreset0" class="clsMDBarButton clsMDActionButton clsMDMenuButton clsDirectionAnalysisPreset" value=" "></div>
+                              <div id="idBtnDirectionAnalysisPreset1" class="clsMDBarButton clsMDActionButton clsMDMenuButton clsDirectionAnalysisPreset" value=" "></div>
+                           </li>
+
+                           <li style="display: inline-block;">
+                              <div id="idBtnDirectionAnalysisPreset2" class="clsMDBarButton clsMDActionButton clsMDMenuButton clsDirectionAnalysisPreset" value=" "></div>
+                              <div id="idBtnDirectionAnalysisPreset3" class="clsMDBarButton clsMDActionButton clsMDMenuButton clsDirectionAnalysisPreset" value=" "></div>
+                           </li>
+
+                           <li class="clsNoOverflow">
+                              <span id="idSpnDirectionAnalysisGamma">Helligkeit</span><br />
+                              <input id="idInDirectionAnalysisGamma" type="range" min="0" max="4" step="0.2" value="1.0" />
+                              <span id="idOutDirectionAnalysisGamma" class="clsListRight">&nbsp;</span>
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+
+            </div>
+         </div>
+      </div>
+
+      <div id="idSettingsBody" class="clsMDMenuList" data-header-id="idItemSettingsMenuHeadIcon">
+         <div class="clsCloseButton"></div>
+         <div>
+            <span id="idItemSettingsBodyCaption" class="clsSideMenuBodyCaption">
+               Einstellungen
+            </span>
+
+            <ul>
+               <li>
+                  <input type="checkbox" id="idCheckAutoCamFly" />
+                  <label id="idLblCheckAutoCamFly" for="idCheckAutoCamFly" class="clsCheckBoxTab">Kamerafahrt autostart</label>
+               </li>
+
+               <li>
+                  <input type="checkbox" id="idCheckCamDamping" />
+                  <label id="idLblCheckCamDamping" for="idCheckCamDamping" class="clsCheckBoxTab">Kamerad&auml;mpfung</label>
+               </li>
+
+               <li>
+                  <input type="checkbox" id="idCheckShowShadowPlanes" style="visibility: hidden" />
+                  <label id="idLblCheckShowShadowPlanes" for="idCheckShowShadowPlanes" class="clsCheckBoxTab" style="visibility: hidden">Schattenwurf</label>
+               </li>
+
+               <!-- Start Mausempfindlichkeit -->
+
+               <li>
+                  <span id="idSpnMouseSpeedHead">Mausgeschwindigkeit: </span>
+                  <input id="idInMouseSpeed" type="range" min="0.1" max="2.0" step=".1" />
+                  <span id="idOutMouseSpeed" class="clsListRight">&nbsp;</span>
+               </li>
+
+               <li>
+                  <span id="idSpnKeySpeedHead">Bewegungsgeschwindigkeit: </span>
+                  <input id="idInKeySpeed" type="range" min="0.5" max="2.0" step=".1" />
+                  <span id="idOutKeySpeed" class="clsListRight">&nbsp;</span>
+               </li>
+
+               <li>
+                  <br />
+               </li>
+
+               <!-- Ende Mausempfindlichkeit -->
+
+               <li>
+                  <br />
+               </li>
+
+               <li>
+                  <div style="width:95px;float:left">
+                     <select id="idSelectRacks" class="clsListRight disabled" disabled>
+                        <option id="idSelectRacks4" value="1">4 Pfosten</option>
+                        <option id="idSelectRacks2" value="0">2 Pfosten</option>
+                     </select>
+                  </div>
+                  <label id="idLblFourPostRack" for="idSelectRacks" class="disabled" disabled style="float:left">Tische</label>
+               </li>
+
+               <li>
+                  <br />
+               </li>
+
+               <li>
+                  <div class="clsSpace"></div>
+               </li>
+            </ul>
+            <ul>
+
+               <li>
+                  <div id="idBtnCancelSettings" class="clsRaisedButton clsCancelButton "><span class="clsRaisedButtonLabel clsCancelIcon"></span></div>
+                  <div id="idBtnApplySettings" class="clsRaisedButton clsApplyButton"><span class="clsRaisedButtonLabel clsApplyIcon"></span></div>
+               </li>
+
+               <li>
+                  <br />
+               </li>
+
+            </ul>
+         </div>
+      </div>
+
+      <div id="idResetBody" class="clsMDMenuList">
+         <div class="clsCloseButton"></div>
+
+         <span id="idItemResetBodyCaption" class="clsSideMenuBodyCaption">
+            Einstellungen zur&uuml;cksetzen
+         </span>
+
+         <ul>
+
+            <li>
+               <input type="checkbox" id="idCheckResetAll" />
+               <label id="idLblCheckResetAll" for="idCheckResetAll" class="clsCheckBoxTab">Alles</label>
+            </li>
+
+            <li>
+               <input type="checkbox" id="idCheckResetEnvironment" />
+               <label id="idLblCheckResetEnvironment" for="idCheckResetEnvironment" class="clsCheckBoxTab">Landschaft</label>
+            </li>
+
+            <li>
+               <input type="checkbox" id="idCheckResetGraphics" />
+               <label id="idLblCheckResetGraphics" for="idCheckResetGraphics" class="clsCheckBoxTab">Grafik</label>
+            </li>
+
+            <li>
+               <input type="checkbox" id="idCheckResetSettings" />
+               <label id="idLblCheckResetSettings" for="idCheckResetSettings" class="clsCheckBoxTab">Einstellungen</label>
+            </li>
+
+            <li>
+               <br />
+            </li>
+
+            <li>
+               <div id="idBtnCancelReset" class="clsRaisedButton clsCancelButton "><span class="clsRaisedButtonLabel clsCancelIcon"></span></div>
+               <div id="idBtnApplyReset" class="clsRaisedButton clsApplyButton"><span class="clsRaisedButtonLabel clsApplyIcon"></span></div>
+            </li>
+
+            <li>
+               <br />
+            </li>
+
+         </ul>
+
+      </div>
+
+      <div id="idInfoBody" class="clsMDMenuList">
+         <div class="clsCloseButton"></div>
+         <div>
+            <div id="idInfoSheetHeader" class="clsSideMenuBodyCaption">
+               Neuberg Deponie
+            </div>
+            <div class="clsTable">
+               <div class="clsRow">
+                  <div id="idSpnAreaHead" class="clsColumn">
+                     Fl&auml;che
+                  </div>
+                  <div id="idSpnArea" class="clsColumn">
+                     35.332 m<sup>2</sup>
+                  </div>
+               </div>
+               <div class="clsRow">
+                  <div id="idSpnTableCountAllHead" class="clsColumn">
+                     Anzahl Solartische
+                  </div>
+                  <div id="idSpnTableCountAll" class="clsColumn">
+                     561
+                  </div>
+               </div>
+               <div class="clsRow">
+                  <div id="idSpnModuleCountAllHead" class="clsColumn">
+                     Verbaute Solarmodule
+                  </div>
+                  <div id="idSpnModuleCountAll" class="clsColumn">
+                     9.930
+                  </div>
+               </div>
+               <div class="clsRow">
+                  <div id="idSpnPowerAllHead" class="clsColumn">
+                     Peakleistung
+                  </div>
+                  <div id="idSpnPowerAll" class="clsColumn">
+                     2,53 MWp
+                  </div>
+               </div>
+            </div>
+            <br />
+         </div>
+      </div>
+
+      <div id="idImpressumBody" class="clsMDMenuList">
+         <div class="clsCloseButton"></div>
+         <div>
+            <span id="idItemAboutBodyCaption" class="clsSideMenuBodyCaption">
+               Impressum
+            </span>
+
+            <ul>
+               <li>
+                  <div id=idSuSLogo></div>
+               </li>
+               <li>
+                  <a href="http://www.stoehr-sauer.de" style="text-decoration: none" target="_blank">
+                     ST&Ouml;HR+SAUER GmbH
+                  </a>
+               </li>
+               <li>
+                  Jens-Otto-Krag-Str. 7
+               </li>
+               <li>
+                  52146 W&uuml;rselen
+               </li>
+               <li>
+                  Germany
+               </li>
+               <li>
+                  <br />
+               </li>
+               <li>
+                  Tel.: +49 (0)2405 4137 0
+               </li>
+               <li>
+                  Fax: +49 (0)2405 4137 50
+               </li>
+               <li>
+                  Mail:
+                  <a href="mailto:info@stoehr-sauer.de" style="text-decoration: none" target="_blank">
+                     info@stoehr-sauer.de
+                  </a>
+               </li>
+               <li>
+                  <br>
+               </li>
+
+               <li>
+                  <!--Powered by <a href="#" ><img id="idImgWebgl" src="images/WebGL_500_151_75.png" title="" /></a-->
+                  Powered by <a href="https://www.khronos.org/webgl/" style="text-decoration: none" target="_blank">WebGL</a>
+               </li>
+               <!--
+                  <li>
+                     Build with <a href="http://threejs.org" target="_blank">
+                        Three.js
+                     </a>
+                  </li>
+               -->
+            </ul>
+         </div>
+      </div>
+
+      <div id="idScreenSettingsBody" class="clsMDMenuList">
+         <div class="clsCloseButton"></div>
+         <div>
+            <span id="idItemScreenSettingsBodyCaption" class="clsSideMenuBodyCaption">
+               Grafik
+            </span>
+            <ul>
+               <li>
+                  <input type="checkbox" id="idCheckUseAntialiasing">
+                  <label id="idLblUseAntialiasing" for="idCheckUseAntialiasing" class="clsCheckBoxTab">Kantengl&auml;ttung</label>
+               </li>
+
+               <li>
+                  <br />
+               </li>
+
+               <li>
+                  <span id="idLblGammaAdjust">Gammakorrektur</span>
+               </li>
+               <li>
+                  <input id="idInGammaAdjust" type="range" min="1.0" max="4.0" step="0.1" value="2.2" />
+                  <span id="idOutGammaAdjust" class="clsListRight" style="float:right">&nbsp;</span>
+               </li>
+
+               <li>
+                  <br />
+               </li>
+
+               <li>
+                  <input type="checkbox" id="idCheckUseAutoResolutionAdjust">
+                  <label id="idLblUseAutoResolutionAdjust" for="idCheckUseAutoResolutionAdjust" class="clsCheckBoxTab">Aufl&ouml;sung automatisch</label>
+               </li>
+
+               <li>
+                  <br />
+               </li>
+
+               <li>
+                  <span id="idScreenSettingsRenderResolutionFactorHead">Faktor Aufl&ouml;sung</span>
+               </li>
+               <li>
+                  <select id="idScreenSettingsRenderResolutionFactor" value="1x">
+                     <option value="0.5">1/2x</option>
+                     <option value="1" selected="selected">1x</option>
+                     <option value="2">2x</option>
+                  </select>
+                  <span id="idScreenSettingsRenderResolution" class="clsListRight" style="float:right"></span>
+               </li>
+
+               <li>
+                  <br />
+               </li>
+
+               <li>
+                  <div style="width:95px;float:left">
+                     <select id="idSelectQuality" class="clsListRight">
+                        <option id="idSelectQualityLow" value="0">Niedrig</option>
+                        <option id="idSelectQualityMedium" value="1">Mittel</option>
+                        <option id="idSelectQualityHigh" value="2">Hoch</option>
+                        <option id="idSelectQualityUltra" value="3">Ultra</option>
+                     </select>
+                  </div>
+                  <label id="idLblSelectQuality" for="idSelectQuality">Qualit&auml;t</label>
+
+               </li>
+            </ul>
+
+            <ul>
+               <li>
+                  <div id="idBtnCancelScreenSettings" class="clsRaisedButton clsCancelButton "><span class="clsRaisedButtonLabel clsCancelIcon"></span></div>
+                  <div id="idBtnApplyScreenSettings" class="clsRaisedButton clsApplyButton"><span class="clsRaisedButtonLabel clsApplyIcon"></span></div>
+               </li>
+
+               <li>
+                  <br />
+               </li>
+            </ul>
+         </div>
+      </div>
+
+      <div id="idScreenshotSettingsBody" class="clsMDMenuList">
+         <div id="idScreenshotCloseButton" class="clsCloseButton"></div>
+         <div>
+            <span id="idItemScreenshotSettingsBodyCaption" class="clsSideMenuBodyCaption">
+               Screenshot
+            </span>
+            <ul>
+
+               <li>
+                  <div style="display:inline-block;width:65px">
+                     <select id="idScreenshotSettingsAspectRatio" value="16:9">
+                        <option value="4:3">4:3</option>
+                        <option value="16:9" selected="selected">16:9</option>
+                        <option value="16:10">16:10</option>
+                        <option value="21:9">21:9</option>
+                     </select>
+                  </div>
+                  <span id="idMenuAspectRatio">Seitenverh&Auml;ltnis</span>
+               </li>
+
+               <li>
+                  <div class="clsSpace"></div>
+               </li>
+
+               <li>
+                  <div style="display:inline-block;width:65px">
+                     <select id="idScreenshotSettingsResolution">
+                        <option value="1920" selected="selected">1920</option>
+                        <option value="2560">2560</option>
+                        <option value="3840">3840</option>
+                     </select>
+                  </div>
+                  <span id="idMenuResolution">Aufl&ouml;sung</span>
+               </li>
+               <li>
+                  <br />
+               </li>
+
+               <li>
+                  <input type="checkbox" id="idCheckScreenshotShowHeliosLogo" /><label for="idCheckScreenshotShowHeliosLogo" id="idShowHeliosLogo" class="clsCheckBoxTab">Helios Logo anzeigen</label>
+               </li>
+               <li>
+                  <input type="checkbox" id="idCheckScreenshotShowProjectData" /><label for="idCheckScreenshotShowProjectData" id="idShowProjectData" class="clsCheckBoxTab">Projektdaten anzeigen</label>
+               </li>
+               <li>
+                  <input type="checkbox" id="idCheckScreenshotShowCompanyLogo" /><label for="idCheckScreenshotShowCompanyLogo" id="idShowCompanyLogo" class="clsCheckBoxTab">Firmenlogo anzeigen</label>
+               </li>
+               <li>
+                  <input type="checkbox" id="idCheckScreenshotShowAnalysisLegend" /><label for="idCheckScreenshotShowAnalysisLegend" id="idShowAnalysisLegend" class="clsCheckBoxTab">Legende anzeigen</label>
+               </li>
+
+            </ul>
+         </div>
+      </div>
+
+      <div id="idTrackshotBody" class="clsMDMenuList" data-do-not-close="true">
+         <div id="idTrackshotCloseButton" class="clsCloseButton"></div>
+         <div>
+            <span id="idItemTrackshotBodyCaption" class="clsSideMenuBodyCaption">
+               Flug &auml;ndern
+            </span>
+
+            <ul>
+               <li>
+                  <div class="clsSeperatingLine clsMDMenuTrackshotButton">
+                     <div id="idTrackshotNewIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idBtnTrackshotNew">Neuer Kamerapfad</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="clsSeperatingLine clsMDMenuTrackshotButton">
+                     <div id="idBtnTrackshotAddIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idBtnTrackshotPointAdd">Wegpunkt hinzuf&uuml;gen</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="clsSeperatingLine clsMDMenuTrackshotButton">
+                     <div id="idBtnTrackshotResetIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idBtnTrackshotReset">Kamerapfad zur&uuml;cksetzen</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="clsSeperatingLine clsMDMenuTrackshotButton">
+                     <div id="idBtnTrackshotPlayIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idBtnTrackshotPlay">Abspielen</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="clsSeperatingLine clsMDMenuTrackshotButton">
+                     <div id="idBtnTrackshotSaveIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idBtnTrackshotSave">Speichern</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="clsSeperatingLine clsMDMenuTrackshotButton">
+                     <div id="idBtnTrackshotLoadIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idBtnTrackshotLoad">Laden</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="clsSeperatingLine clsMDMenuTrackshotButton">
+                     <div id="idBtnTrackshotDeleteIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idBtnTrackshotDelete">Speicher l&ouml;schen</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="clsSeperatingLine clsMDMenuTrackshotButton">
+                     <div id="idBtnTrackshotShowPathIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idBtnTrackshotShowPathLine">Fluglinie anzeigen</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="clsMDMenuTrackshotButton">
+                     <div id="idBtnTrackshotShowCoordsIcon" class="clsMenuIcon">
+                        <div class="clsMenuDescription">
+                           <span id="idBtnTrackshotOutputCoords">Koordinatenliste ausgeben</span>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div id="idPerformanceBody" class="clsMDMenuList" data-do-not-close="true">
+         <div id="idPerformanceCloseButton" class="clsCloseButton"></div>
+
+         <div>
+            <span id="idItemPerformanceBodyCaption" class="clsSideMenuBodyCaption">
+               Performance&nbsp;difference
+            </span>
+
+            <ul>
+
+               <li class="clsGroupMark" id="idMarkPerformanceAnalysis">
+                  <ul>
+                     <li>
+                        <input type="checkbox" id="idPerformanceSwitch" />
+                        <label id="idLblPerformanceSwitch" for="idPerformanceSwitch">Aktiv</label>
+                     </li>
+
+                     <li>
+                        <input type="checkbox" id="idRackPerformanceShowMinMax" />
+                        <label id="idLabelRackPerformanceShowMinMax" for="idRackPerformanceShowMinMax">Extreme zeigen</label>
+                     </li>
+
+                     <li>
+                        <input type="radio" name="radioSelectPerformanceType" id="idCheckShowYieldPerformance" value="false" checked="checked">
+                        <label id="idLabelShowYieldPerformance" for="idCheckShowYieldPerformance">Ertrag</label>
+                     </li>
+
+                     <li>
+                        <input type="radio" name="radioSelectPerformanceType" id="idCheckShowPeakPerformance" value="true">
+                        <label id="idLabelShowPeakPerformance" for="idCheckShowPeakPerformance">kWp-Ertrag</label>
+                     </li>
+
+                     <li>
+                        <br />
+                     </li>
+
+                     <li>
+                        <b><span id="idLabelRackPerformanceMinMaxValue">Module output (kWh)</span></b>
+                     </li>
+
+                     <li>
+                        <span id="idLabelRackPerformanceMax">Max</span>
+                        <span id="idRackPerformanceMaxValue" class="clsPerformanceMinMaxData">unknown</span>
+                     </li>
+                     <li>
+                        <span id="idLabelRackPerformanceMin">Min</span>
+                        <span id="idRackPerformanceMinValue" class="clsPerformanceMinMaxData">unknown</span>
+                     </li>
+                     <li>
+                        <span id="idLabelRackPerformanceDiff">Diff</span>
+                        <span id="idRackPerformanceDiffValue" class="clsPerformanceMinMaxData">unknown</span>
+                     </li>
+
+                  </ul>
+               </li>
+
+               <li>
+                  <br />
+               </li>
+
+               <li class="clsGroupMark" id="idMarkPowerlossAnalysis">
+                  <ul>
+
+                     <li>
+                        <input type="checkbox" id="idPowerlossSwitch" />
+                        <label id="idLblPowerlossSwitch" for="idPowerlossSwitch">Aktiv</label>
+                     </li>
+
+                     <li>
+                        <br />
+                     </li>
+
+                     <li>
+                        <span id="idCaptionPowerlossPercent">Verlustleistung in Prozent</span>
+                     </li>
+
+                     <li>
+                        <span id="idCaptionPowerlossLimit">Grenzwert: </span>
+                        <span id="idPowerlossLimit">1.3 %</span>
+                     </li>
+
+                     <li>
+                        <input type="range" id="idSlidePowerlossLimit" min="0.1" max="5" step="0.1" value="1.3" />
+                     </li>
+
+                     <li>
+                        <div id="idPowerlossLegend">
+
+                           <ul>
+                              <li>
+                                 <label class="clsLabelTab" for="idColorPowerloss0"></label>
+                                 <input type="color" class="clsColorSelectButton" id="idColorPowerloss0" />
+                              </li>
+                              <li>
+                                 <label class="clsLabelTab" for="idColorPowerloss1"></label>
+                                 <input type="color" class="clsColorSelectButton" id="idColorPowerloss1" />
+                              </li>
+                              <li>
+                                 <label class="clsLabelTab" for="idColorPowerloss2"></label>
+                                 <input type="color" class="clsColorSelectButton" id="idColorPowerloss2" />
+                              </li>
+                              <li>
+                                 <label class="clsLabelTab" for="idColorPowerloss3"></label>
+                                 <input type="color" class="clsColorSelectButton" id="idColorPowerloss3" />
+                              </li>
+                              <li>
+                                 <label class="clsLabelTab" for="idColorPowerloss4"></label>
+                                 <input type="color" class="clsColorSelectButton" id="idColorPowerloss4" />
+                              </li>
+                              <li>
+                                 <label class="clsLabelTab" for="idColorPowerloss5"></label>
+                                 <input type="color" class="clsColorSelectButton" id="idColorPowerloss5" />
+                              </li>
+                           </ul>
+
+                        </div>
+                     </li>
+
+                  </ul>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div id="idControlsBody" class="clsMDMenuList">
+         <div id="idControlsCloseButton" class="clsCloseButton"></div>
+         <div>
+            <span id="idItemControlsBodyCaption" class="clsSideMenuBodyCaption">Steuerung</span>
+            <ul class="sus-grid">
+               <li style="column-span:2">
+                  <b><span data-translation-de="Bewegen:" data-translation-en="Move:">Bewegen:</span></b>
+               </li>
+               <li>
+                  <span data-translation-de="Vorw&aumlrts" data-translation-en="Forwards">Vorwärts</span>
+                  <span data-translation-de="W, Pfeil hoch" data-translation-en="W, Arrow up">W, Pfeil hoch</span>
+               </li>
+               <li>
+                  <span data-translation-de="Links" data-translation-en="Left">Links</span>
+                  <span data-translation-de="A, Pfeil links" data-translation-en="A, Arrow left">A, Pfeil links</span>
+               </li>
+               <li>
+                  <span data-translation-de="Rechts" data-translation-en="Right">Rechts</span>
+                  <span data-translation-de="S, pfeil rechts" data-translation-en="S, Arrow right">S, Pfeil rechts</span>
+               </li>
+               <li>
+                  <span data-translation-de="Rückw&aumlrts" data-translation-en="Back">Rückwärts</span>
+                  <span data-translation-de="D, Pfeil runter" data-translation-en="D, Arrow down">D, Pfeil runter</span>
+               </li>
+               <li>
+                  <br />
+               </li>
+               <li style="column-span:2">
+                  <b><span data-translation-de="Drehen:" data-translation-en="Turn:">Drehen:</span></b>
+               </li>
+               <li>
+                  <span data-translation-de="Links" data-translation-en="Left">Links</span>
+                  <span>Q</span>
+               </li>
+               <li>
+                  <span data-translation-de="Rechts" data-translation-en="Right">Rechts</span>
+                  <span>E</span>
+               </li>
+               <li>
+                  <br />
+               </li>
+               <li style="column-span:2">
+                  <b><span data-translation-de="Sonstiges:" data-translation-en="Other:">Sonstiges:</span></b>
+               </li>
+               <li>
+                  <span data-translation-de="Befehlseingabe" data-translation-en="Command input">Befehlseingabe</span>
+                  <span>Shift + Y</span>
+               </li>
+            </ul>
+         </div>
+      </div>
+
+   </div>
+
+   <div id="idScreenShotDialog" class="clsDialog">
+      <div class="clsScreenshotDialogImage"></div>
+      <div class="clsCloseDialog"></div>
+      <a id="idDownloadScreenshotHover" class="clsScreenshowDownloadHover"></a>
+   </div>
+
+   <div id="idDialog" class="clsDialog">
+      <div id="idDialogHeader" class="clsSideMenuBodyCaption">Header</div>
+      <div id="idDialogBody"></div>
+      <div class="clsCloseDialog"></div>
+      <div style="margin:10px"></div>
+   </div>
+
+   <!-- THIS IS THE TOOLTIP ELEMENT WHEN HOVERING A RACK -->
+   <div id="idRackInfoBody" class="clsDialog">
+      <!--<span id="idSpnLastYieldCalculationResult">Letzte Ertragsabschätzung:</span>-->
+      <ul>
+         <li data-row="0">
+            <span data-role="value"></span>
+            <span data-role="value"></span>
+         </li>
+         <li><div class="gap-7"></div></li>
+         <li data-row="1">
+            <span>String Leistung unten:</span>
+            <span data-role="value"></span>
+         </li>
+         <li data-row="2">
+            <span>KWp Leistung:</span>
+            <span data-role="value"></span>
+         </li>
+         <li><div class="gap-7"></div></li>
+         <li data-row="3">
+            <span>String Leistung oben:</span>
+            <span data-role="value"></span>
+         </li>
+         <li data-row="4">
+            <span>KWp Leistung:</span>
+            <span data-role="value"></span>
+         </li>
+         <li><div class="gap-7"></div></li>
+         <li data-row="5">
+            <span> KWp Differenz</span>
+            <span data-role="value"></span>
+         </li>
+      </ul>
+   </div>
+
+   <!-- THIS IS THE PANEL AT LOWER RIGHT WITH FPS ETC -->
+   <div id="idStatistics" class="sus-statistics-panel" style="display:none">
+      <ul>
+         <li>
+            <span data-head="vertices"></span>
+            <span data-value="vertices"></span>
+         </li>
+         <li>
+            <span data-head="faces"></span>
+            <span data-value="faces"></span>
+         </li>
+         <li>
+            <span data-head="objects"></span>
+            <span data-value="objects"></span>
+         </li>
+         <li>
+            <span data-head="textures">Texturen</span>
+            <span data-value="textures"></span>
+         </li>
+         <li>
+            <span data-head="calls">Calls</span>
+            <span data-value="calls"></span>
+         </li>
+         <li>
+            <span data-head="geometries">Geometries</span>
+            <span data-value="geometries"></span>
+         </li>
+         <li>
+            <span data-head="resolution"></span>
+            <span data-value="resolution"></span>
+         </li>
+         <li>
+            <span data-head="fps"></span>
+            <span data-value="fps"></span>
+         </li>
+         <li>
+            <span data-head="ram"></span>
+            <span data-value="ram"></span>
+         </li>
+      </ul>
+   </div>
+
+   <!--div id="idOutput" class="clsDebugOutput">
+      <p id="idOutText" class="clsDebugOutput"></p>
+   </div-->
+   <!--JSFILESINCLUDE-->
+   <script src="js/pikaday.js"></script>
+   <script src="js/sus3D.min.js"></script>
+   <script src="js/heliosSettings.js"></script>
+   <script src="js/terrain_data.js"></script>
+   <script src="js/rack_data.js"></script>
+   <script src="js/acad_data.js"></script>
+   <script src="js/fence_data.js"></script>
+   <script src="js/load_data.js"></script>
+   <script src="js/hwe_min.js"></script>
+
+</body>
+</html>
