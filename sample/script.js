@@ -11,7 +11,7 @@ tl
 .to(['#bottom_left_part','#bottom_right_part','#top_left_part','#top_right_part'],1,{fill:'#fff'}, "+=0.1")
 .fromTo(['#letter_e','#letter_m'],1, {drawSVG:"0%",stroke:'#fff',fill:'none'}, {autoAlpha:1,stroke:'#fff',drawSVG:"100%", immediateRender:false}, "+=0.1")
 .to(['#top_left_smiglo','#top_right_smiglo','#bottom_left_smiglo','#bottom_right_smiglo'],2,{autoAlpha:1,rotation:720,transformOrigin:' 50% 50%'})
-.fromTo(['#logo_letter_w','#logo_letter_a','#logo_letter_t','#logo_letter_c','#logo_letter_h','#logo_letter_a','#logo_letter_w'],3, {drawSVG:"0%",stroke:'#fff',fill:'none'}, {autoAlpha:1,stroke:'#fff',fill:'#fff',drawSVG:"100%", immediateRender:false}, "-=1.5")
+.fromTo(['#logo_letter_w','#logo_letter_a','#logo_letter_t','#logo_letter_c','#logo_letter_h','#logo_letter_e','#logo_letter_r'],3, {drawSVG:"0%",stroke:'#fff',fill:'none'}, {autoAlpha:1,stroke:'#fff',fill:'#fff',drawSVG:"100%", immediateRender:false}, "-=1.5")
 .to('#drone_logo',3,{y:'+=25',repeat: -1,yoyo:true,ease:Back.easeIn}, "-=2")
 ;
 
